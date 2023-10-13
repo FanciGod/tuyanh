@@ -1,0 +1,91 @@
+.top-border-pane{
+
+}
+
+.left-border-pane{
+    -fx-background-color: #2f3c7e;
+
+}
+
+.left-button{
+    -fx-background-color: #fbeaeb;
+    -fx-border-color: #2f3c7e ;
+    -fx-border-width: 0px 0px 1px 0px;
+
+
+
+}
+.left-button:hover{
+    -fx-background-color: #f19c9d;
+
+    -fx-cursor: hand;
+
+
+}
+.center-pane{
+    -fx-background-color: #fbeaeb;
+}
+.center-pane-child{
+
+    -fx-border-radius:6px;
+    -fx-border-color: #2f3c7e;
+    -fx-background-radius: 6px;
+    -fx-background-color: white ;
+}
+
+.top-pane{
+    -fx-background-color: #fbeaeb;
+}
+
+.top-dashboard{
+    -fx-background-color: #2f3c7e ;
+    -fx-background-radius: 6px;
+}
+
+.table-view{
+    -fx-background-color: transparent;
+    -fx-border-color: #2f3c7e;
+    -fx-border-radius: 6px;
+}
+
+.table-view .column-header{
+
+    -fx-background-color:#fbeaeb ;
+
+}
+
+.text-field{
+    -fx-border-radius: 5px;
+}
+.text-field:hover{
+    -fx-border-color: #2f3c7e;
+    -fx-border-radius: 5px;
+}
+
+.text-field:focused{
+    -fx-border-color: #2f3c7e;
+    -fx-border-radius: 5px;
+}
+
+.table-view .table-column{
+    -fx-alignment: center;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #2f3c7e;
+}
+
+.bottom-btn{
+    -fx-background-color:#fbeaeb ;
+    -fx-text-fill: #2f3c7e;
+
+    -fx-background-radius: 8px;
+
+    -fx-border-radius: 6px;
+    -fx-border-width: 1px;
+}
+
+.bottom-btn:hover{
+    -fx-border-color: #2f3c7e;
+    -fx-cursor: hand;
+}

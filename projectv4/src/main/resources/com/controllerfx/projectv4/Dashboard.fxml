@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1280.0" stylesheets="@css/Dashboard.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllerfx.projectv4.DashboardController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <BorderPane layoutX="100.0" layoutY="58.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <top>
+                  <AnchorPane prefHeight="30.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane prefHeight="30.0" prefWidth="1280.0" styleClass="top-pane" stylesheets="@css/Dashboard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label layoutX="14.0" layoutY="6.0" text="Computer Shop Management" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children></AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </top>
+               <left>
+                  <AnchorPane prefHeight="367.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutY="85.0" prefHeight="540.0" prefWidth="160.0" styleClass="left-border-pane" stylesheets="@css/Dashboard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label layoutX="43.0" layoutY="105.0" text="Welcome" textFill="#fbeaeb">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="dashboardUsername" alignment="CENTER" layoutX="6.0" layoutY="132.0" prefHeight="32.0" prefWidth="148.0" text="name" textFill="#fbeaeb">
+                                 <font>
+                                    <Font name="System Bold Italic" size="22.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="100.0" layoutX="60.0" layoutY="199.0" startX="-60.0" />
+                              <Button fx:id="btnHomeLeft" alignment="BOTTOM_LEFT" layoutX="1.0" layoutY="208.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="30.0" prefWidth="160.0" styleClass="left-button" stylesheets="@css/Dashboard.css" text="Home" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnInventoryLeft" alignment="BOTTOM_LEFT" layoutX="1.0" layoutY="238.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="30.0" prefWidth="160.0" styleClass="left-button" stylesheets="@css/Dashboard.css" text="Inventory" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnAddOrderLeft" alignment="BOTTOM_LEFT" layoutX="1.0" layoutY="328.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="30.0" prefWidth="160.0" styleClass="left-button" stylesheets="@css/Dashboard.css" text="Add Order" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnAddPurchaseLeft" alignment="BOTTOM_LEFT" layoutX="1.0" layoutY="268.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="30.0" prefWidth="160.0" styleClass="left-button" stylesheets="@css/Dashboard.css" text="Add Purchase " textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="logOut" layoutX="46.0" layoutY="661.0" mnemonicParsing="false" onAction="#logOut" prefHeight="25.0" prefWidth="69.0" styleClass="left-button" stylesheets="@css/Dashboard.css" text="Log out" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold Italic" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnNewAccountLeft" alignment="BOTTOM_LEFT" layoutX="1.0" layoutY="478.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="30.0" prefWidth="160.0" styleClass="left-button" stylesheets="@css/Dashboard.css" text="New Account" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnCustomerLeft" alignment="BOTTOM_LEFT" layoutX="1.0" layoutY="388.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="30.0" prefWidth="160.0" styleClass="left-button" stylesheets="@css/Dashboard.css" text="Customer" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnSupplierLeft" alignment="BOTTOM_LEFT" layoutX="1.0" layoutY="418.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="30.0" prefWidth="160.0" styleClass="left-button" stylesheets="@css/Dashboard.css" text="Supplier" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnPurchaseHistoryLeft" alignment="BOTTOM_LEFT" layoutX="1.0" layoutY="298.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="30.0" prefWidth="160.0" styleClass="left-button" stylesheets="@css/Dashboard.css" text="Purchase History" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnBillHistoryLeft" alignment="BOTTOM_LEFT" layoutX="1.0" layoutY="358.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="30.0" prefWidth="160.0" styleClass="left-button" stylesheets="@css/Dashboard.css" text="Bill History" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnStatisticsLeft" alignment="BOTTOM_LEFT" layoutX="1.0" layoutY="448.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="30.0" prefWidth="160.0" styleClass="left-button" stylesheets="@css/Dashboard.css" text="Statistics" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <ImageView fitHeight="87.0" fitWidth="124.0" layoutX="19.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </left>
+               <center>
+                  <AnchorPane prefHeight="540.0" prefWidth="614.0" styleClass="center-pane" stylesheets="@css/Dashboard.css" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane fx:id="homepagePanel" prefHeight="700.0" prefWidth="1119.0" styleClass="center-pane-child" stylesheets="@css/Dashboard.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="40.0" layoutY="21.0" prefHeight="121.0" prefWidth="235.0" styleClass="top-dashboard" stylesheets="@css/Dashboard.css">
+                                 <children>
+                                    <Label layoutX="33.0" layoutY="14.0" text="Products sold today" textFill="#fbeaeb">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="productSoldToday" alignment="CENTER_RIGHT" layoutX="99.0" layoutY="61.0" prefHeight="27.0" prefWidth="103.0" text="0" textFill="#fbeaeb">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <BarChart fx:id="homeChart" layoutX="112.0" layoutY="249.0" prefHeight="301.0" prefWidth="837.0">
+                                <xAxis>
+                                  <CategoryAxis side="BOTTOM" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis side="LEFT" />
+                                </yAxis>
+                              </BarChart>
+                              <AnchorPane layoutX="385.0" layoutY="21.0" prefHeight="121.0" prefWidth="235.0" styleClass="top-dashboard" stylesheets="@css/Dashboard.css">
+                                 <children>
+                                    <Label layoutX="55.0" layoutY="14.0" text="Revenue today" textFill="#fbeaeb">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="revenueToday1" alignment="CENTER_RIGHT" layoutX="81.0" layoutY="61.0" prefHeight="27.0" prefWidth="106.0" text="0" textFill="#fbeaeb">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="735.0" layoutY="21.0" prefHeight="121.0" prefWidth="235.0" styleClass="top-dashboard" stylesheets="@css/Dashboard.css">
+                                 <children>
+                                    <Label layoutX="55.0" layoutY="14.0" text="Revenue today" textFill="#fbeaeb">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="revenueToday" alignment="CENTER_RIGHT" layoutX="81.0" layoutY="61.0" prefHeight="27.0" prefWidth="106.0" text="0" textFill="#fbeaeb">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="InventoryPanel" layoutX="171.0" layoutY="97.0" prefHeight="570.0" prefWidth="639.0" styleClass="center-pane-child" stylesheets="@css/Dashboard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <TableView fx:id="productTableView" layoutX="31.0" layoutY="77.0" onMouseClicked="#selectProductID" onSort="#selectProductID" prefHeight="334.0" prefWidth="1051.0" stylesheets="@css/Dashboard.css">
+                                <columns>
+                                  <TableColumn fx:id="colProductID" prefWidth="44.0" text="ID" />
+                                  <TableColumn fx:id="colProductName" prefWidth="298.0" text="Product Name" />
+                                    <TableColumn fx:id="colSellPrice" prefWidth="121.0" text="Sell price" />
+                                    <TableColumn fx:id="colImportPrice" prefWidth="115.0" text="Import price" />
+                                    <TableColumn fx:id="colQuantity" prefWidth="120.0" text="Quantity" />
+                                    <TableColumn fx:id="colCategory" prefWidth="100.0" text="Category" />
+                                    <TableColumn fx:id="colAction" prefWidth="251.0" text="Action" />
+                                </columns>
+                              </TableView>
+                              <TextField fx:id="productSearch" layoutX="31.0" layoutY="29.0" prefHeight="25.0" prefWidth="256.0" promptText="Search" />
+                              <Button fx:id="btnUpdateProduct" layoutX="902.0" layoutY="637.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="170.0" styleClass="bottom-btn" stylesheets="@css/Dashboard.css" text="Update">
+                                 <font>
+                                    <Font name="System Bold Italic" size="18.0" />
+                                 </font></Button>
+                              <Label layoutX="31.0" layoutY="465.0" text="Product Name" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="productNameView" layoutX="159.0" layoutY="463.0" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #2f3c7e; -fx-border-width: 0px 0px 1px 0px;" />
+                              <Label layoutX="69.0" layoutY="538.0" text="Sell Price" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="sellPriceView" layoutX="159.0" layoutY="535.0" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #2f3c7e; -fx-border-width: 0px 0px 1px 0px;" />
+                              <Label layoutX="450.0" layoutY="466.0" text="Category" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="categoryView" layoutX="552.0" layoutY="463.0" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #2f3c7e; -fx-border-width: 0px 0px 1px 0px;" />
+                              <Label layoutX="45.0" layoutY="616.0" text="Import Price" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="importPriceView" layoutX="159.0" layoutY="613.0" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #2f3c7e; -fx-border-width: 0px 0px 1px 0px;" />
+                              <AnchorPane fx:id="image" layoutX="843.0" layoutY="430.0" prefHeight="153.0" prefWidth="160.0">
+                                 <children>
+                                    <Button layoutX="1.0" layoutY="127.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="158.0" styleClass="bottom-btn" stylesheets="@css/Dashboard.css" text="Image" />
+                                 </children>
+                              </AnchorPane>
+                              <Button fx:id="btnAddProduct" layoutX="712.0" layoutY="637.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="170.0" styleClass="bottom-btn" stylesheets="@css/Dashboard.css" text="Add">
+                                 <font>
+                                    <Font name="System Bold Italic" size="18.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="addPurchasePanel" prefHeight="700.0" prefWidth="1119.0" styleClass="center-pane-child" stylesheets="@css/Dashboard.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <TableView fx:id="purchaseTableView" layoutX="35.0" layoutY="92.0" prefHeight="237.0" prefWidth="702.0" stylesheets="@css/Dashboard.css">
+                                 <columns>
+                                    <TableColumn fx:id="colPurchaseProductIDView" prefWidth="44.0" text="ID" />
+                                    <TableColumn fx:id="colPurchaseProductNameView" prefWidth="348.0" text="Product Name" />
+                                    <TableColumn fx:id="colPurchaseImportView" prefWidth="123.0" text="Import price" />
+                                    <TableColumn fx:id="colPurchaseCategoryView" prefWidth="185.0" text="Category" />
+                                 </columns>
+                              </TableView>
+                              <TextField fx:id="productSearch1" layoutX="35.0" layoutY="49.0" prefHeight="25.0" prefWidth="256.0" promptText="Search" />
+                              <TableView fx:id="addPurchaseTable" layoutX="35.0" layoutY="387.0" prefHeight="237.0" prefWidth="702.0" stylesheets="@css/Dashboard.css">
+                                 <columns>
+                                    <TableColumn fx:id="colPurchaseProductID" prefWidth="44.0" text="ID" />
+                                    <TableColumn fx:id="colPurchaseProductName" prefWidth="251.0" text="Product Name" />
+                                    <TableColumn fx:id="colPurchaseImportPrice" prefWidth="118.0" text="Import price" />
+                                    <TableColumn fx:id="colPurchaseQuantity" text="Quantity" />
+                                    <TableColumn fx:id="colPurchaseCategory" prefWidth="94.0" text="Category" />
+                                    <TableColumn fx:id="colPurchaseFinalPrice" prefWidth="113.0" text="Final price" />
+                                 </columns>
+                              </TableView>
+                              <Label layoutX="810.0" layoutY="101.0" text="Supplier name" textFill="#2f3c7e">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="selectSupplierPurchase" layoutX="907.0" layoutY="97.0" prefWidth="150.0" />
+                              <Label fx:id="supplierAddressPurchase" layoutX="907.0" layoutY="139.0" prefHeight="17.0" prefWidth="149.0" text="..............." />
+                              <Label fx:id="supplierPhonePurchase" layoutX="907.0" layoutY="176.0" prefHeight="17.0" prefWidth="148.0" text="............." />
+                              <Label fx:id="supplierEmailPurchase" layoutX="907.0" layoutY="211.0" prefHeight="17.0" prefWidth="135.0" text="La.................bel" />
+                              <Label layoutX="810.0" layoutY="138.0" text="Address" textFill="#2f3c7e">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="810.0" layoutY="175.0" text="Phone number" textFill="#2f3c7e">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="810.0" layoutY="210.0" text="Email" textFill="#2f3c7e">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <AnchorPane layoutX="810.0" layoutY="316.0" prefHeight="212.0" prefWidth="224.0" styleClass="center-pane-child" stylesheets="@css/Dashboard.css">
+                                 <children>
+                                    <Label layoutX="37.0" layoutY="47.0" text="Total price" textFill="#2f3c7e">
+                                       <font>
+                                          <Font name="System Bold Italic" size="30.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="SupplierTotalPrice" layoutX="62.0" layoutY="158.0" text="000000000000" textFill="#2f3c7e">
+                                       <font>
+                                          <Font name="System Bold Italic" size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <Button fx:id="btnAddPurchase" layoutX="886.0" layoutY="589.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="170.0" styleClass="bottom-btn" stylesheets="@css/Dashboard.css" text="Purchase !!!!">
+                                 <font>
+                                    <Font name="System Bold Italic" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnAddToPurchase" layoutX="231.0" layoutY="343.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="86.0" styleClass="bottom-btn" stylesheets="@css/Dashboard.css" text="Add" />
+                              <Button fx:id="btnSaveChangeToPurchase" layoutX="334.0" layoutY="343.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="96.0" styleClass="bottom-btn" stylesheets="@css/Dashboard.css" text="Save change" />
+                              <Button fx:id="btnRemovePurchase" layoutX="449.0" layoutY="343.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="93.0" styleClass="bottom-btn" stylesheets="@css/Dashboard.css" text="Remove" />
+                           </children></AnchorPane>
+                        <AnchorPane fx:id="purchaseHistoryPanel" prefHeight="700.0" prefWidth="1119.0" styleClass="center-pane-child" stylesheets="@css/Dashboard.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <TextField fx:id="searchPurchaseHistory" layoutX="31.0" layoutY="29.0" prefHeight="25.0" prefWidth="235.0" promptText="Search" />
+                              <TableView fx:id="purchaseHistoryView" layoutX="58.0" layoutY="100.0" prefHeight="539.0" prefWidth="980.0">
+                                <columns>
+                                  <TableColumn fx:id="colPurchaseHistoryProductID" prefWidth="62.0" text="ID" />
+                                  <TableColumn fx:id="colPurchaseHistoryCreatedBy" prefWidth="259.0" text="Created by" />
+                                    <TableColumn fx:id="colPurchaseHistoryCreateTime" prefWidth="198.0" text="Create time" />
+                                    <TableColumn fx:id="colPurchaseHistorySupplier" prefWidth="236.0" text="Supplier" />
+                                    <TableColumn fx:id="colPurchaseHistoryAction" prefWidth="223.0" text="Action" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="newAccountPanel" layoutX="10.0" layoutY="10.0" prefHeight="580.0" prefWidth="649.0" styleClass="center-pane-child" stylesheets="@css/Dashboard.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label layoutX="182.0" layoutY="77.0" text="CREATE NEW ACCOUNT" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold" size="22.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="156.0" layoutY="160.0" text="Username" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="newUsername" layoutX="235.0" layoutY="158.0" prefHeight="25.0" prefWidth="193.0" promptText="username" />
+                              <TextField fx:id="newFullName" layoutX="235.0" layoutY="342.0" prefHeight="25.0" prefWidth="193.0" promptText="full name" />
+                              <Button layoutX="280.0" layoutY="417.0" mnemonicParsing="false" styleClass="bottom-btn" stylesheets="@css/Dashboard.css" text="Create" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Label layoutX="158.0" layoutY="221.0" text="Password" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="140.0" layoutY="283.0" text="RePassword" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="157.0" layoutY="344.0" text="Full name" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <PasswordField fx:id="newPassword" accessibleRole="TEXT_FIELD" layoutX="235.0" layoutY="219.0" prefHeight="25.0" prefWidth="193.0" promptText="password" />
+                              <PasswordField fx:id="newRePassword" accessibleRole="TEXT_FIELD" layoutX="235.0" layoutY="281.0" prefHeight="25.0" prefWidth="194.0" promptText="repassword" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="addOrderPanel" layoutX="120.0" prefHeight="700.0" prefWidth="1119.0" styleClass="center-pane-child" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <TableView fx:id="productOrderTableView" layoutX="54.0" layoutY="93.0" prefHeight="237.0" prefWidth="702.0" stylesheets="@css/Dashboard.css">
+                                 <columns>
+                                    <TableColumn fx:id="colOrderProductIDView" prefWidth="44.0" text="ID" />
+                                    <TableColumn fx:id="colOrderProductNameView1" prefWidth="348.0" text="Product Name" />
+                                    <TableColumn fx:id="colOrderImportView" prefWidth="123.0" text="Import price" />
+                                    <TableColumn fx:id="colOrderCategoryView" prefWidth="185.0" text="Category" />
+                                 </columns>
+                              </TableView>
+                              <TextField fx:id="productSearch11" layoutX="93.0" layoutY="45.0" prefHeight="25.0" prefWidth="256.0" promptText="Search" />
+                              <TableView fx:id="orderTableView" layoutX="54.0" layoutY="391.0" prefHeight="252.0" prefWidth="702.0" stylesheets="@css/Dashboard.css">
+                                 <columns>
+                                    <TableColumn fx:id="colOrderPurchaseID" prefWidth="44.0" text="ID" />
+                                    <TableColumn fx:id="colOrderProductName" prefWidth="251.0" text="Product Name" />
+                                    <TableColumn fx:id="colOrderImportPrice" prefWidth="118.0" text="Import price" />
+                                    <TableColumn fx:id="colOrderQuantity" text="Quantity" />
+                                    <TableColumn fx:id="colOrderCategory" prefWidth="94.0" text="Category" />
+                                    <TableColumn fx:id="colOrderFinalPrice" prefWidth="113.0" text="Final price" />
+                                 </columns>
+                              </TableView>
+                              <Label layoutX="814.0" layoutY="77.0" text="Customer" textFill="#2f3c7e">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="819.0" layoutY="184.0" text="Address" textFill="#2f3c7e">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="782.0" layoutY="146.0" text="Phone number" textFill="#2f3c7e">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="839.0" layoutY="113.0" text="Email" textFill="#2f3c7e">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="btnAddToOrderTable" layoutX="242.0" layoutY="346.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="86.0" styleClass="bottom-btn" stylesheets="@css/Dashboard.css" text="Add" />
+                              <Button fx:id="btSaveChangeToOrderTable" layoutX="354.0" layoutY="346.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="96.0" styleClass="bottom-btn" stylesheets="@css/Dashboard.css" text="Save change" />
+                              <Button fx:id="btnRemoveToOrderTable" layoutX="476.0" layoutY="346.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="93.0" styleClass="bottom-btn" stylesheets="@css/Dashboard.css" text="Remove" />
+                              <AnchorPane layoutX="839.0" layoutY="360.0" prefHeight="212.0" prefWidth="224.0" styleClass="center-pane-child" stylesheets="@css/Dashboard.css">
+                                 <children>
+                                    <Label layoutX="37.0" layoutY="47.0" text="Total price" textFill="#2f3c7e">
+                                       <font>
+                                          <Font name="System Bold Italic" size="30.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="orderTotalPrice" layoutX="62.0" layoutY="158.0" text="000000000000" textFill="#2f3c7e">
+                                       <font>
+                                          <Font name="System Bold Italic" size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <Button fx:id="btnAddOrder" layoutX="880.0" layoutY="603.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="170.0" styleClass="bottom-btn" stylesheets="@css/Dashboard.css" text="Buy !!!">
+                                 <font>
+                                    <Font name="System Bold Italic" size="18.0" />
+                                 </font>
+                              </Button>
+                              <TextField fx:id="orderCustomerName" layoutX="885.0" layoutY="64.0" prefHeight="26.0" prefWidth="181.0" style="-fx-background-color: transparent; -fx-border-color: #2f3c7e; -fx-border-width: 0px 0px 1px 0px;" />
+                              <TextField fx:id="orderEmail" layoutX="885.0" layoutY="100.0" prefHeight="26.0" prefWidth="181.0" style="-fx-background-color: transparent; -fx-border-color: #2f3c7e; -fx-border-width: 0px 0px 1px 0px;" />
+                              <TextField fx:id="orderPhoneNumber" layoutX="885.0" layoutY="133.0" prefHeight="26.0" prefWidth="181.0" style="-fx-background-color: transparent; -fx-border-color: #2f3c7e; -fx-border-width: 0px 0px 1px 0px;" />
+                              <TextField fx:id="orderAddress" layoutX="885.0" layoutY="171.0" prefHeight="26.0" prefWidth="181.0" style="-fx-background-color: transparent; -fx-border-color: #2f3c7e; -fx-border-width: 0px 0px 1px 0px;" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="billHistoryPanel" prefHeight="700.0" prefWidth="1119.0" styleClass="center-pane-child" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <TextField fx:id="searchOrderHistory" layoutX="30.0" layoutY="40.0" prefHeight="25.0" prefWidth="235.0" promptText="Search" />
+                              <TableView fx:id="orderHistoryView" layoutX="52.0" layoutY="102.0" prefHeight="452.0" prefWidth="980.0">
+                                 <columns>
+                                    <TableColumn fx:id="colBillID" prefWidth="62.0" text="ID" />
+                                    <TableColumn fx:id="colBillCreatedBy" prefWidth="259.0" text="Created by" />
+                                    <TableColumn fx:id="colBillCreateTime" prefWidth="198.0" text="Create time" />
+                                    <TableColumn fx:id="colBillCustomer" prefWidth="236.0" text="Customer" />
+                                    <TableColumn fx:id="colBillAction" prefWidth="223.0" text="Action" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="customerPanel" prefHeight="700.0" prefWidth="1119.0" styleClass="center-pane-child" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <TextField fx:id="customerSearch" layoutX="44.0" layoutY="43.0" prefHeight="25.0" prefWidth="267.0" promptText="Search" />
+                              <TableView layoutX="51.0" layoutY="131.0" prefHeight="342.0" prefWidth="999.0">
+                                <columns>
+                                  <TableColumn fx:id="colCustomerID" prefWidth="53.0" text="ID" />
+                                  <TableColumn fx:id="colCustomerName" prefWidth="224.0" text="Customer name" />
+                                    <TableColumn fx:id="colCustomerAddress" prefWidth="146.0" text="Address" />
+                                    <TableColumn fx:id="colCustomerPhoneNumber" minWidth="0.0" prefWidth="147.0" text="Phone number" />
+                                    <TableColumn fx:id="colCustomerEmail" prefWidth="265.0" text="Email" />
+                                    <TableColumn fx:id="colCustomerAction" prefWidth="162.0" text="Action" />
+                                </columns>
+                              </TableView>
+                              <Label layoutX="85.0" layoutY="530.0" text="Customer Name" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="customerCustomerName" layoutX="229.0" layoutY="516.0" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #2f3c7e; -fx-border-width: 0px 0px 1px 0px;" />
+                              <Label layoutX="85.0" layoutY="572.0" text="Phone number" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="customerPhoneNumber" layoutX="229.0" layoutY="559.0" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #2f3c7e; -fx-border-width: 0px 0px 1px 0px;" />
+                              <TextField fx:id="customerCustomerAddress" layoutX="644.0" layoutY="516.0" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #2f3c7e; -fx-border-width: 0px 0px 1px 0px;" />
+                              <Label layoutX="503.0" layoutY="530.0" text="Address" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="customerCustomerEmail" layoutX="644.0" layoutY="555.0" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #2f3c7e; -fx-border-width: 0px 0px 1px 0px;" />
+                              <Label layoutX="503.0" layoutY="569.0" text="Email" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="btnUpdateCustomer" layoutX="702.0" layoutY="625.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="170.0" styleClass="bottom-btn" stylesheets="@css/Dashboard.css" text="Update">
+                                 <font>
+                                    <Font name="System Bold Italic" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnAddCustomer" layoutX="895.0" layoutY="625.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="170.0" styleClass="bottom-btn" stylesheets="@css/Dashboard.css" text="Add">
+                                 <font>
+                                    <Font name="System Bold Italic" size="18.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="supplierPanel" layoutX="10.0" layoutY="10.0" prefHeight="710.0" prefWidth="1129.0" styleClass="center-pane-child" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <TextField fx:id="supplierSearch" layoutX="44.0" layoutY="43.0" prefHeight="25.0" prefWidth="267.0" promptText="Search" />
+                              <TableView layoutX="51.0" layoutY="131.0" prefHeight="342.0" prefWidth="999.0">
+                                 <columns>
+                                    <TableColumn fx:id="colSupplierID" prefWidth="53.0" text="ID" />
+                                    <TableColumn fx:id="colSupplierName" prefWidth="224.0" text="Customer name" />
+                                    <TableColumn fx:id="colSupplierAddress" prefWidth="146.0" text="Address" />
+                                    <TableColumn fx:id="colPhoneNumber" minWidth="0.0" prefWidth="147.0" text="Phone number" />
+                                    <TableColumn fx:id="colSupplierEmail" prefWidth="265.0" text="Email" />
+                                    <TableColumn fx:id="colSupplierAction" prefWidth="162.0" text="Action" />
+                                 </columns>
+                              </TableView>
+                              <Label layoutX="85.0" layoutY="530.0" text="Customer Name" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="supplierSupplierName" layoutX="229.0" layoutY="516.0" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #2f3c7e; -fx-border-width: 0px 0px 1px 0px;" />
+                              <Label layoutX="85.0" layoutY="572.0" text="Phone number" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="supplierSupplierPhoneNumber" layoutX="229.0" layoutY="559.0" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #2f3c7e; -fx-border-width: 0px 0px 1px 0px;" />
+                              <TextField fx:id="supplierSupplierAddress" layoutX="644.0" layoutY="516.0" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #2f3c7e; -fx-border-width: 0px 0px 1px 0px;" />
+                              <Label layoutX="503.0" layoutY="530.0" text="Address" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="supplierSupplierEmail" layoutX="644.0" layoutY="555.0" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #2f3c7e; -fx-border-width: 0px 0px 1px 0px;" />
+                              <Label layoutX="503.0" layoutY="569.0" text="Email" textFill="#2f3c7e">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="btnUpdateSupplier" layoutX="702.0" layoutY="625.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="170.0" styleClass="bottom-btn" stylesheets="@css/Dashboard.css" text="Update">
+                                 <font>
+                                    <Font name="System Bold Italic" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnAddSupplier" layoutX="895.0" layoutY="625.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="170.0" styleClass="bottom-btn" stylesheets="@css/Dashboard.css" text="Add">
+                                 <font>
+                                    <Font name="System Bold Italic" size="18.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="statisticsPanel" prefHeight="700.0" prefWidth="1119.0" styleClass="center-pane-child" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <BarChart layoutX="41.0" layoutY="165.0">
+                                <xAxis>
+                                  <CategoryAxis side="BOTTOM" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis side="LEFT" />
+                                </yAxis>
+                              </BarChart>
+                              <BarChart layoutX="566.0" layoutY="165.0">
+                                <xAxis>
+                                  <CategoryAxis side="BOTTOM" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis side="LEFT" />
+                                </yAxis>
+                              </BarChart>
+                           </children>
+                        </AnchorPane>
+                     </children></AnchorPane>
+               </center>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
