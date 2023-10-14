@@ -1,7 +1,8 @@
 package com.controllerfx.projectv4;
 
-import JDBCConnect.Connect.JDBCConnect;
-import javafx.event.ActionEvent;
+import JDBCConnect.model.LoginModel;
+import entity.GetData;
+import entity.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,10 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.Objects;
 
 public class LoginController {
 
@@ -33,52 +31,46 @@ public class LoginController {
     @FXML
     private TextField username;
 
+    LoginModel loginModel;
 
     public void AdminLogin() {
-        String sql = "SELECT * FROM projectv4.account WHERE `Account_name` = ? and `Password` = ? ";
-        Connection con = JDBCConnect.Connect();
-        try {
-            PreparedStatement PS = con.prepareStatement(sql);
-            PS.setString(1, username.getText());
-            PS.setString(2, password.getText());
-            ResultSet rs = PS.executeQuery();
-            if (username.getText().isEmpty() || password.getText().isEmpty()) {
+        loginModel = new LoginModel();
+        User user = loginModel.addminLogin(username.getText(), password.getText());
+        if (username.getText().isEmpty() || password.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR!!!!");
+            alert.setContentText("fill the blank....");
+            alert.setHeaderText(null);
+            alert.show();
+        } else {
+            if (user != null) {
+                GetData.name = user.getName();
+                GetData.password = user.getPassword();
+                GetData.username = user.getUsername();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setTitle("INFORMATION!!");
+                alert.setContentText("Login successfully");
+                alert.showAndWait();
+                btnLogin.getScene().getWindow().hide();
+                try {
+                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Dashboard.fxml")));
+                    Stage stage = new Stage();
+                    Scene scene = new Scene(root);
+                    scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("css/Dashboard.css")).toExternalForm());
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("ERROR!!!!");
-                alert.setContentText("fill the blank....");
+                alert.setContentText("Wrong username/password");
                 alert.setHeaderText(null);
-                alert.show();
-            } else {
-                if (rs.next() == true) {
-                    String Account_name = rs.getString("Account_name");
-                    GetData.name = Account_name;
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setHeaderText(null);
-                    alert.setTitle("INFORMATION!!");
-                    alert.setContentText("Login successfully");
-                    alert.showAndWait();
-                    btnLogin.getScene().getWindow().hide();
-                    try {
-                        Parent root = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
-                        Stage stage = new Stage();
-                        Scene scene = new Scene(root);
-                        stage.setScene(scene);
-                        stage.showAndWait();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("ERROR!!!!");
-                    alert.setContentText("Wrong username/password");
-                    alert.setHeaderText(null);
-                    alert.showAndWait();
-                }
+                alert.showAndWait();
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
-
     }
 }
 

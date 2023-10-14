@@ -3,21 +3,19 @@ package entity;
 public class Product {
     private int productID;
     private String productName;
-    private double sellPrice;
-    private double importPrice;
+    private long sellPrice;
+    private long importPrice;
     private int quantity;
     private String category;
-    private String image;
     private String supplierName;
 
-    public Product(int productID, String productName, double sellPrice, double importPrice, int quantity, String category, String image, String supplierName) {
+    public Product(int productID, String productName, long sellPrice, long importPrice, int quantity, String category, String image, String supplierName) {
         this.productID = productID;
         this.productName = productName;
         this.sellPrice = sellPrice;
         this.importPrice = importPrice;
         this.quantity = quantity;
         this.category = category;
-        this.image = image;
         this.supplierName = supplierName;
     }
 
@@ -26,7 +24,7 @@ public class Product {
 
     }
 
-    public Product(int productID, String productName, double sellPrice, double importPrice, int quantity, String category, String supplierName) {
+    public Product(int productID, String productName, long sellPrice, long importPrice, int quantity, String category, String supplierName) {
         this.productID = productID;
         this.productName = productName;
         this.sellPrice = sellPrice;
@@ -36,7 +34,7 @@ public class Product {
         this.supplierName = supplierName;
     }
 
-    public Product(int productID, String productName, double sellPrice, double importPrice, int quantity, String category) {
+    public Product(int productID, String productName, long sellPrice, long importPrice, int quantity, String category) {
         this.productID = productID;
         this.productName = productName;
         this.sellPrice = sellPrice;
@@ -61,19 +59,19 @@ public class Product {
         this.productName = productName;
     }
 
-    public double getSellPrice() {
+    public long getSellPrice() {
         return sellPrice;
     }
 
-    public void setSellPrice(double sellPrice) {
+    public void setSellPrice(long sellPrice) {
         this.sellPrice = sellPrice;
     }
 
-    public double getImportPrice() {
+    public long getImportPrice() {
         return importPrice;
     }
 
-    public void setImportPrice(double importPrice) {
+    public void setImportPrice(long importPrice) {
         this.importPrice = importPrice;
     }
 
@@ -93,13 +91,7 @@ public class Product {
         this.category = category;
     }
 
-    public String getImage() {
-        return image;
-    }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
 
     public String getSupplierName() {
         return supplierName;
@@ -118,7 +110,6 @@ public class Product {
                 ", importPrice=" + importPrice +
                 ", quantity=" + quantity +
                 ", category='" + category + '\'' +
-                ", image='" + image + '\'' +
                 ", supplierName='" + supplierName + '\'' +
                 '}';
     }

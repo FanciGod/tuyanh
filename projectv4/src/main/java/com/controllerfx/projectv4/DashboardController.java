@@ -1,42 +1,40 @@
 package com.controllerfx.projectv4;
 
-import JDBCConnect.Connect.JDBCConnect;
+import JDBCConnect.model.DashboardModel;
+import entity.Customer;
+import entity.GetData;
 import entity.Product;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.function.Predicate;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Callback;
 
 public class DashboardController implements Initializable {
+    @FXML
+    public Button imageBut;
     @FXML
     private AnchorPane InventoryPanel;
 
@@ -131,7 +129,7 @@ public class DashboardController implements Initializable {
     private TextField categoryView;
 
     @FXML
-    private TableColumn<?, ?> colAction;
+    private TableColumn<Product, Void> colAction;
 
     @FXML
     private TableColumn<?, ?> colBillAction;
@@ -302,7 +300,7 @@ public class DashboardController implements Initializable {
     private AnchorPane homepagePanel;
 
     @FXML
-    private AnchorPane image;
+    private ImageView image;
 
     @FXML
     private TextField importPriceView;
@@ -424,6 +422,17 @@ public class DashboardController implements Initializable {
     @FXML
     private TextField supplierSupplierPhoneNumber;
 
+    DashboardModel dashboardModel;
+
+    ObservableList<Product> productObservableList = FXCollections.observableArrayList();
+
+    private FileInputStream fileInputStream;
+
+    private File selectedFile;
+
+    @FXML
+    private TableView<Customer> customerTable;
+
     public void logOut() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText(null);
@@ -433,7 +442,7 @@ public class DashboardController implements Initializable {
         if (option.get().equals(ButtonType.OK)) {
             logOut.getScene().getWindow().hide();
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Login.fxml")));
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
@@ -489,6 +498,10 @@ public class DashboardController implements Initializable {
             btnSupplierLeft.setStyle("-fx-background-color: #fbeaeb");
             btnStatisticsLeft.setStyle("-fx-background-color: #fbeaeb");
             btnNewAccountLeft.setStyle("-fx-background-color: #fbeaeb");
+
+            setTextViewEmpty();
+            imageBut.setVisible(true);
+            image.setImage(null);
         } else if (e.getSource() == btnAddPurchaseLeft) {
             homepagePanel.setVisible(false);
             InventoryPanel.setVisible(false);
@@ -668,76 +681,245 @@ public class DashboardController implements Initializable {
         }
     }
 
-    public ObservableList<Product> callProductList() throws SQLException {
-        ObservableList<Product> productList = FXCollections.observableArrayList();
-        String sql = "SELECT * FROM projectv4.product inner join projectv4.category on product.Category_ID = category.Category_ID inner join projectv4.supplier on product.Supplier_ID = supplier.Supplier_ID";
-        Connection connect = JDBCConnect.Connect();
-        PreparedStatement PS = connect.prepareStatement(sql);
-        ResultSet RS = PS.executeQuery();
-        while (RS.next()) {
-            int productID = RS.getInt("Product_ID");
-            String productName = RS.getString("product.Name");
-            int quantity = RS.getInt("Quantity");
-            double importPrice = RS.getDouble("Import_price");
-            double sellPrice = RS.getDouble("Sell_price");
-            String category = RS.getString("category.Name");
-            String supplierName = RS.getString("supplier.Name");
-            String image = RS.getString("Image");
-            int isDeleted = RS.getInt("is_deleted");
-            if (isDeleted == 0) {
-                Product tempProduct = new Product(productID, productName, sellPrice, importPrice, quantity, category, image, supplierName);
-                productList.add(tempProduct);
-            }
-        }
-        return productList;
+//    private void getDataForTbProduct() {
+//        dashboardModel = new DashboardModel();
+//        List<Product> ProductList = new ArrayList<>();
+//        Product Product;
+//        for (Product x : dashboardModel.getDataProduct()) {
+//            Product = new Product();
+//            Product.setProductID(x.getProductID());
+//            Product.setProductName(x.getProductName());
+//            Product.setCategory(x.getCategory());
+//            Product.setSellPrice(x.getSellPrice());
+//            Product.setImage(x.getImage());
+//            Product.setImportPrice(x.getImportPrice());
+//            Product.setQuantity(x.getQuantity());
+//            ProductList.add(Product);
+//        }
+//        productObservableList.addAll(ProductList);
+//    }
+
+
+//    public void showProductList() {
+//        getDataForTbProduct();
+//        if (productObservableList.isEmpty()) {
+//            productTableView.setItems(null);
+//        } else {
+//            colProductID.setCellValueFactory(new PropertyValueFactory<>("productID"));
+//            colProductName.setCellValueFactory(new PropertyValueFactory<>("productName"));
+//            colSellPrice.setCellValueFactory(new PropertyValueFactory<>("sellPrice"));
+//            colImportPrice.setCellValueFactory(new PropertyValueFactory<>("importPrice"));
+//            colQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+//            colCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
+//            colAction.setCellFactory(param -> new TableCell<Product, Void>() {
+//                private final Button editButton = new Button("update");
+//                private final Button deleteButton = new Button("delete");
+//                private final HBox pane = new HBox(deleteButton, editButton);
+//
+//                {
+//                    dashboardModel = new DashboardModel();
+//                    deleteButton.setOnAction(event -> {
+//                        Product getProduct = getTableView().getItems().get(getIndex());
+//                        System.out.println(getProduct.getProductID() + "   " + getProduct.getProductName());
+//                        dashboardModel.deleteProduct(getProduct.getProductID());
+//                        productTableView.getItems().remove(getProduct);
+//                        productTableView.refresh();
+//                        imageBut.setVisible(true);
+//                        setTextViewEmpty();
+//                        image.setImage(null);
+//                    });
+//
+//                    editButton.setOnAction(event -> {
+//                        Product getProduct = getTableView().getItems().get(getIndex());
+//                        System.out.println(getProduct.getProductID() + "   " + getProduct.getProductName());
+//                        setTextView(getProduct);
+//                        imageBut.setVisible(true);
+//                    });
+//                }
+//
+//                @Override
+//                protected void updateItem(Void item, boolean empty) {
+//                    super.updateItem(item, empty);
+//                    deleteButton.setStyle(
+//                            "-fx-background-color: #f19c9d;" +
+//                                    "-fx-cursor: hand;"
+//                    );
+//                    editButton.setStyle(
+//                            "-fx-background-color: #f19c9d;" +
+//                                    "-fx-cursor: hand;"
+//
+//                    );
+//                    HBox.setMargin(deleteButton, new Insets(2, 20, 0, 30));
+//                    HBox.setMargin(editButton, new Insets(2, 20, 0, 2));
+//                    pane.setStyle(
+//                            ".button {" +
+//                                    "-fx-background-color: black;" +
+//                                    "-fx-alignment: center;" +
+//                                    "}"
+//                    );
+//                    setGraphic(empty ? null : pane);
+//                }
+//            });
+//
+//            productTableView.setItems(productObservableList);
+//        }
+//    }
+
+
+    private void searchFilter() {
+        FilteredList<Product> filterSearch = new FilteredList<>(productObservableList, e -> true);
+        productSearch.setOnKeyReleased(e -> {
+
+
+            productSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+                filterSearch.setPredicate((Predicate<? super Product>) cust -> {
+                    if (newValue == null) {
+                        return true;
+                    }
+                    String toLowerCaseFilter = newValue.toLowerCase();
+                    if (cust.getProductName().toLowerCase().contains(toLowerCaseFilter)) {
+                        return true;
+                    } else if (cust.getCategory().toLowerCase().contains(toLowerCaseFilter)) {
+                        return true;
+                    } else if (newValue.matches("-?\\d+(\\.\\d+)?")) {
+                        if (cust.getSellPrice() == Double.parseDouble(newValue)) {
+                            return true;
+                        } else if (cust.getImportPrice() == Double.parseDouble(newValue)) {
+                            return true;
+                        }
+                    }
+                    return false;
+                });
+            });
+
+            SortedList<Product> products = new SortedList<>(filterSearch);
+            products.comparatorProperty().bind(productTableView.comparatorProperty());
+            productTableView.setItems(products);
+        });
     }
 
-    public void showProductList() throws SQLException {
-        ObservableList<Product> realProductList = callProductList();
-        colProductID.setCellValueFactory(new PropertyValueFactory<>("productID"));
-        colProductName.setCellValueFactory(new PropertyValueFactory<>("productName"));
-        colSellPrice.setCellValueFactory(new PropertyValueFactory<>("sellPrice"));
-        colImportPrice.setCellValueFactory(new PropertyValueFactory<>("importPrice"));
-        colQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        colCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
-        productTableView.setItems(realProductList);
+    private void setTextView(Product productSelected) {
+        productNameView.setText(productSelected.getProductName());
+        sellPriceView.setText(String.valueOf(productSelected.getSellPrice()));
+        categoryView.setText(productSelected.getCategory());
+        importPriceView.setText(String.valueOf(productSelected.getImportPrice()));
+    }
+
+    private void setTextViewEmpty() {
+        productNameView.setText(null);
+        sellPriceView.setText(null);
+        categoryView.setText(null);
+        importPriceView.setText(null);
     }
 
     public void selectProductID() {
         Product productSelected = productTableView.getSelectionModel().getSelectedItem();
-        int selectedProductID = productSelected.getProductID();
-        GetData.getProductID = selectedProductID;
-        System.out.println(GetData.getProductID);
+        GetData.getProductID = productSelected.getProductID();
+        setTextView(productSelected);
+        imageBut.setVisible(false);
     }
 
 //    public void updateProduct() throws SQLException {
-//        selectProductID();
-//        Connection con = JDBCConnect.Connect();
-//        String sql = "SELECT * FROM projectv4.product inner join projectv4.category on product.Category_ID = category.Category_ID inner join projectv4.supplier on product.Supplier_ID = supplier.Supplier_ID where product.Product_ID = ?";
-//        PreparedStatement ps = con.prepareStatement(sql);
-//        ps.setInt(1, GetData.getProductID);
-//        ResultSet rs =ps.executeQuery();
-//        while (rs.next()){
-//           String productName = rs.getString("product.Name");
-//           String category = rs.getString("category.Name");
-//           double sellPrice = rs.getDouble("Sell_price");
-//           double importPrice = rs.getDouble("Import_price");
-//            productNameView.setText(productName);
-//            categoryView.setText(category);
-//            sellPriceView.setText(String.valueOf(sellPrice));
-//            importPriceView.setText(String.valueOf(importPrice));
-//        }
 
 //    }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+//        showProductList();
+        searchFilter();
         try {
-            showProductList();
-
+            showCustomerList();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void chooseImage(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif", "*.jpeg", "*.tiff")
+        );
+        selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            Image tempImage = new Image(selectedFile.toURI().toString());
+            image.setImage(tempImage);
+        } else {
+            System.out.println("a");
+        }
+    }
+
+    public void addProduct(ActionEvent event) {
+
+    }
+
+    public void showCustomerList() throws SQLException {
+        DashboardModel dm = new DashboardModel();
+        ObservableList<Customer> CustomerList = dm.getDataCustomerList();
+        colCustomerID.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        colCustomerName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        colCustomerAddress.setCellValueFactory(new PropertyValueFactory<>("customerAddress"));
+        colCustomerPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("customerPhoneNum"));
+        colCustomerEmail.setCellValueFactory(new PropertyValueFactory<>("customerEmail"));
+//        colCustomerAction.setCellFactory(param -> new TableCell<Customer, Void>() {
+//            private final Button deleteCustomerButton = new Button("delete");
+//            {
+//                dashboardModel = new DashboardModel();
+//                deleteCustomerButton.setOnAction(event -> {
+//                    Customer getCustomer = getTableView().getItems().get(getIndex());
+//                    System.out.println(getCustomer.getCustomerID() + "   " + getCustomer.getCustomerName();
+//                    try {
+//                        dashboardModel.deleteCustomer(getCustomer.getCustomerID());
+//                    } catch (SQLException e) {
+//                        throw new RuntimeException(e);
+//                    }
+//                    customerTable.getItems().remove(getCustomer);
+//                    customerTable.refresh();
+//                });
+//            }
+//        };
+        customerTable.setItems(CustomerList);
+    }
+
+    public void selectCustomerID() throws SQLException {
+        Customer selectCustomer = customerTable.getSelectionModel().getSelectedItem();
+        GetData.getCustomerID = selectCustomer.getCustomerID();
+        DashboardModel dm = new DashboardModel();
+        Customer customer = dm.getDataCustomer(GetData.getCustomerID);
+        customerCustomerName.setText(customer.getCustomerName());
+        customerCustomerAddress.setText(customer.getCustomerAddress());
+        customerPhoneNumber.setText(customer.getCustomerPhoneNum());
+        customerCustomerEmail.setText(customer.getCustomerEmail());
+
+    }
+
+    public void updateCustomerID() throws SQLException {
+       DashboardModel dm = new DashboardModel();
+       String regexPattern = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+
+       if(customerCustomerName.getText().isEmpty() || customerCustomerAddress.getText().isEmpty() ||customerPhoneNumber.getText().isEmpty() || customerCustomerEmail.getText().isEmpty()){
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+           alert.setTitle("ERROR!!!!");
+           alert.setContentText("fill the blank....");
+           alert.setHeaderText(null);
+           alert.show();
+       }else{
+           if(customerCustomerEmail.getText().matches(regexPattern)){
+               dm.updateCustomer(customerCustomerName.getText(),customerCustomerAddress.getText(),customerPhoneNumber.getText(),customerCustomerEmail.getText(), GetData.getCustomerID );
+               Alert alert = new Alert(Alert.AlertType.INFORMATION);
+               alert.setHeaderText(null);
+               alert.setTitle("Update customer");
+               alert.setContentText("Updated successfully");
+               alert.showAndWait();
+           }else{
+               Alert alert = new Alert(Alert.AlertType.ERROR);
+               alert.setTitle("ERROR!!!!");
+               alert.setContentText("Check email again");
+               alert.setHeaderText(null);
+               alert.show();
+           }
+       }
+
+
     }
 }

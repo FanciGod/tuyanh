@@ -170,17 +170,17 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="InventoryPanel" layoutX="171.0" layoutY="97.0" prefHeight="570.0" prefWidth="639.0" styleClass="center-pane-child" stylesheets="@css/Dashboard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="InventoryPanel" layoutX="171.0" layoutY="97.0" prefHeight="570.0" prefWidth="639.0" styleClass="center-pane-child" stylesheets="@css/Dashboard.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <TableView fx:id="productTableView" layoutX="31.0" layoutY="77.0" onMouseClicked="#selectProductID" onSort="#selectProductID" prefHeight="334.0" prefWidth="1051.0" stylesheets="@css/Dashboard.css">
+                              <TableView fx:id="productTableView" layoutX="31.0" layoutY="77.0" onMouseClicked="#selectProductID" onSort="#selectProductID" prefHeight="334.0" prefWidth="1051.0">
                                 <columns>
                                   <TableColumn fx:id="colProductID" prefWidth="44.0" text="ID" />
                                   <TableColumn fx:id="colProductName" prefWidth="298.0" text="Product Name" />
-                                    <TableColumn fx:id="colSellPrice" prefWidth="121.0" text="Sell price" />
-                                    <TableColumn fx:id="colImportPrice" prefWidth="115.0" text="Import price" />
-                                    <TableColumn fx:id="colQuantity" prefWidth="120.0" text="Quantity" />
-                                    <TableColumn fx:id="colCategory" prefWidth="100.0" text="Category" />
-                                    <TableColumn fx:id="colAction" prefWidth="251.0" text="Action" />
+                                    <TableColumn fx:id="colSellPrice" prefWidth="146.0" text="Sell price" />
+                                    <TableColumn fx:id="colImportPrice" prefWidth="135.0" text="Import price" />
+                                    <TableColumn fx:id="colQuantity" prefWidth="124.0" text="Quantity" />
+                                    <TableColumn fx:id="colCategory" prefWidth="140.0" text="Category" />
+                                    <TableColumn fx:id="colAction" prefWidth="162.0" text="Action" />
                                 </columns>
                               </TableView>
                               <TextField fx:id="productSearch" layoutX="31.0" layoutY="29.0" prefHeight="25.0" prefWidth="256.0" promptText="Search" />
@@ -212,16 +212,13 @@
                                  </font>
                               </Label>
                               <TextField fx:id="importPriceView" layoutX="159.0" layoutY="613.0" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #2f3c7e; -fx-border-width: 0px 0px 1px 0px;" />
-                              <AnchorPane fx:id="image" layoutX="843.0" layoutY="430.0" prefHeight="153.0" prefWidth="160.0">
-                                 <children>
-                                    <Button layoutX="1.0" layoutY="127.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="158.0" styleClass="bottom-btn" stylesheets="@css/Dashboard.css" text="Image" />
-                                 </children>
-                              </AnchorPane>
-                              <Button fx:id="btnAddProduct" layoutX="712.0" layoutY="637.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="170.0" styleClass="bottom-btn" stylesheets="@css/Dashboard.css" text="Add">
+                              <Button fx:id="btnAddProduct" layoutX="712.0" layoutY="637.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="30.0" prefWidth="170.0" styleClass="bottom-btn" stylesheets="@css/Dashboard.css" text="Add">
                                  <font>
                                     <Font name="System Bold Italic" size="18.0" />
                                  </font>
                               </Button>
+                              <Button fx:id="imageBut" layoutX="850.0" layoutY="571.0" mnemonicParsing="false" onAction="#chooseImage" prefHeight="25.0" prefWidth="158.0" styleClass="bottom-btn" stylesheets="@css/Dashboard.css" text="Image" />
+                              <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="829.0" layoutY="421.0" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="addPurchasePanel" prefHeight="700.0" prefWidth="1119.0" styleClass="center-pane-child" stylesheets="@css/Dashboard.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -427,10 +424,10 @@
                               </TableView>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="customerPanel" prefHeight="700.0" prefWidth="1119.0" styleClass="center-pane-child" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="customerPanel" prefHeight="700.0" prefWidth="1119.0" styleClass="center-pane-child" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <TextField fx:id="customerSearch" layoutX="44.0" layoutY="43.0" prefHeight="25.0" prefWidth="267.0" promptText="Search" />
-                              <TableView layoutX="51.0" layoutY="131.0" prefHeight="342.0" prefWidth="999.0">
+                              <TableView fx:id="customerTable" layoutX="51.0" layoutY="131.0" onMouseClicked="#selectCustomerID" prefHeight="342.0" prefWidth="999.0">
                                 <columns>
                                   <TableColumn fx:id="colCustomerID" prefWidth="53.0" text="ID" />
                                   <TableColumn fx:id="colCustomerName" prefWidth="224.0" text="Customer name" />
@@ -464,7 +461,7 @@
                                     <Font name="System Bold" size="15.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="btnUpdateCustomer" layoutX="702.0" layoutY="625.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="170.0" styleClass="bottom-btn" stylesheets="@css/Dashboard.css" text="Update">
+                              <Button fx:id="btnUpdateCustomer" layoutX="702.0" layoutY="625.0" mnemonicParsing="false" onAction="#updateCustomerID" prefHeight="30.0" prefWidth="170.0" styleClass="bottom-btn" stylesheets="@css/Dashboard.css" text="Update">
                                  <font>
                                     <Font name="System Bold Italic" size="18.0" />
                                  </font>
@@ -482,14 +479,14 @@
                               <TableView layoutX="51.0" layoutY="131.0" prefHeight="342.0" prefWidth="999.0">
                                  <columns>
                                     <TableColumn fx:id="colSupplierID" prefWidth="53.0" text="ID" />
-                                    <TableColumn fx:id="colSupplierName" prefWidth="224.0" text="Customer name" />
+                                    <TableColumn fx:id="colSupplierName" prefWidth="224.0" text="Supplier name" />
                                     <TableColumn fx:id="colSupplierAddress" prefWidth="146.0" text="Address" />
                                     <TableColumn fx:id="colPhoneNumber" minWidth="0.0" prefWidth="147.0" text="Phone number" />
                                     <TableColumn fx:id="colSupplierEmail" prefWidth="265.0" text="Email" />
                                     <TableColumn fx:id="colSupplierAction" prefWidth="162.0" text="Action" />
                                  </columns>
                               </TableView>
-                              <Label layoutX="85.0" layoutY="530.0" text="Customer Name" textFill="#2f3c7e">
+                              <Label layoutX="85.0" layoutY="530.0" text="Supplier Name" textFill="#2f3c7e">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>

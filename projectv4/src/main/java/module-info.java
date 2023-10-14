@@ -6,6 +6,7 @@ module com.controllerfx.projectv4 {
 
 
     opens com.controllerfx.projectv4 to javafx.fxml;
-    opens entity to javafx.base;
     exports com.controllerfx.projectv4;
+    exports entity;
+    opens entity to javafx.base, javafx.fxml;
 }
